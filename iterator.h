@@ -1,12 +1,13 @@
 //
-// Created by Sebastian on 19/09/2018.
+// Created by Sebastian on 25/09/2018.
 //
 
-#ifndef W4_ITERATOR_H
-#define W4_ITERATOR_H
+#ifndef W5_ITERATOR_H
+#define W5_ITERATOR_H
 
 #include "node.h"
 #include <deque>
+using namespace std;
 
 template <typename T>
 class Iterator {
@@ -18,13 +19,14 @@ private:
 public:
     Iterator() : current(nullptr) {};
     Iterator(Node<T>* current) : current(current), head(current) {};
+    Iterator(Node<T>* current, Node<T>* head) : current(current), head(head) {};
 
     Iterator<T> operator=(Iterator<T> node){
         current= node.current;
         return node;
     };
     bool operator!=(Iterator<T> cmp){
-        return (current->data!=node->data);
+        return (current->data!=cmp.current->data);
     };
 
 
@@ -69,6 +71,9 @@ public:
     T operator*(){
         return current->data;
     };
+    Node<T>* rn(){
+        return current;
+    }
 
 
     Iterator<T> operator++(){
@@ -111,4 +116,5 @@ public:
     };
 };
 
-#endif
+
+#endif //W5_ITERATOR_H

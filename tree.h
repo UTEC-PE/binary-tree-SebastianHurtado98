@@ -147,6 +147,26 @@ public:
         return temp;
     }
 
+    int level(Node<T>* x){
+        T val= x->data;
+        auto temp= head;
+        int count=1;
+        while(temp->data!=val){
+            if(val<temp->data){
+                temp= temp->left;
+            }
+            else{
+                temp=temp->right;
+            }
+            count++;
+        }
+        return count;
+    }
+
+    T weight(Node<T>* x){
+        return (x->data) * level(x);
+    }
+
     Node<T>* father(Node<T>* x){
         if(x!=head){
         T n= x->data;
@@ -205,6 +225,7 @@ public:
 
 
     }
+
 
     ~Tree(){
         Iterator<T> start= begin();

@@ -20,7 +20,57 @@ private:
 
     Node<T>* current;
 
+    void print_in_order(Node<T>* node){
+        if (node->left!= nullptr){
+            print_in_order(node->left);
+        }
+        cout << node->data << " ";
+        if(node->right!= nullptr){
+            print_in_order(node->right);
+        }
+    };
+    void print_pre_order(Node<T>* node){
+        cout << node->data << " ";
+        if (node->left!= nullptr){
+            print_in_order(node->left);
+        }
+        if(node->right!= nullptr){
+            print_in_order(node->right);
+        }
+    };
+    void print_post_order(Node<T>* node){
+        if (node->left!= nullptr){
+            print_in_order(node->left);
+        }
+        if(node->right!= nullptr){
+            print_in_order(node->right);
+        }
+        cout << node->data << " ";
+    };
+    void insert_node(T x, Node<T>* &now){
+        if(x!=now->data){
+        if (x < now->data) {
+            auto *n = new Node<T>();
+            if (now->left == nullptr) {
+                n->data = x;
+                now->left = n;
+            } else {
+                insert_node(x, (now->left));
+            }
+        } else {
+            if (now->right == nullptr) {
+                auto *n = new Node<T>();
+                n->data = x;
+                now->right = n;
+            } else {
+                insert_node(x, now->right);
+            }
+        }}
+        else{
+            cout << "Ya existe el nodo";
+        }
 
+    };
 
 public:
     Node<T>* head;
@@ -30,46 +80,32 @@ public:
 
     };
 
+    void print_in_order(){
+        print_in_order(head);
+    };
+    void print_pre_order(){
+        print_pre_order(head);
+    };
 
-    void create_node(T x){
+    void print_post_order(){
+        print_post_order(head);
+    };
 
-        auto *n= new Node<T>();
 
-        if(head==nullptr){
-            n->data= x;
-            head=n;
-            current= n;
-        }
-        else{
+    void insert_node(T x) {
+
+            auto *n = new Node<T>();
+
+        if (head == nullptr) {
+            n->data = x;
+            head = n;
+            current = n;
+        } else {
             insert_node(x, head);
         }
-
     };
 
-    void insert_node(T x, Node<T>* &now){
 
-        if (x< now->data){
-            auto *n= new Node<T>();
-            if(now->left== nullptr){
-                n->data= x;
-                now->left=n;
-            }
-            else{
-                insert_node(x, (now->left));
-            }
-        }
-        else{
-            if(now->right== nullptr){
-                auto *n= new Node<T>();
-                n->data=x;
-                now->right=n;
-            }
-            else{
-                insert_node(x, now->right);
-            }
-        }
-
-    };
     void print_tree(){
         Iterator<int> it1= begin();
         Iterator<int> it2= last();
@@ -138,14 +174,15 @@ public:
         while(it.rn()!= nullptr){
             if(*it==x){
                 temp=it.rn();
-                break;
+
             }
             else{
                 ++it;
             }
         }
         return temp;
-    }
+
+    };
 
     int level(Node<T>* x){
         T val= x->data;
@@ -180,6 +217,7 @@ public:
         }
         return temp;}
         else{
+            cout << "Root no tiene padre" << endl;
             return head;
         }
     }

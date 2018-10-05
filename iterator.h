@@ -25,7 +25,7 @@ public:
         current= node.current;
         return node;
     };
-    bool operator!=(Iterator<T> cmp){
+    bool operator!=(Iterator<T> cmp){ // Podría ser null el current, no?
         return (current->data!=cmp.current->data);
     };
 

@@ -66,9 +66,9 @@ private:
                 insert_node(x, now->right);
             }
         }}
-        else{
+        /*else{
             cout << "Ya existe el nodo";
-        }
+        }*/
 
     };
 
@@ -165,7 +165,7 @@ public:
         while(temp->right!= nullptr){
             temp=temp->right;
         }
-        Iterator<T> final(temp, head);
+        Iterator<T> final(temp, head); // Y lara imrpimir el último elemento?
         return final;
     }
     Node<T>* find(int x){
@@ -201,7 +201,7 @@ public:
     }
 
     T weight(Node<T>* x){
-        return (x->data) * level(x);
+        return (x->data) * level(x); // El peso es la cantidad de nodos, no la data
     }
 
     Node<T>* father(Node<T>* x){
